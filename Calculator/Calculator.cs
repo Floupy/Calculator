@@ -12,6 +12,12 @@ namespace Calculator
 {
     public partial class Calculator : Form
     {
+        double firstNumber;
+        double secondNumber;
+        int firstNumberLength;
+        string operation; 
+
+
         public Calculator()
         {
             InitializeComponent();
@@ -35,9 +41,9 @@ namespace Calculator
 
         private void buttonPeriod_Click(object sender, EventArgs e)
         {
-            if (!Display.Text.Contains("."))
+            if (!Display.Text.Contains(","))
             {
-                Display.Text += ".";
+                Display.Text += ",";
             }
 
 
@@ -71,6 +77,50 @@ namespace Calculator
             double number = Convert.ToDouble(Display.Text);
             number *= -1; //number = number * -1
             Display.Text = Convert.ToString(number);
+        }
+
+
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            
+            if (!Display.Text.Contains("+"))
+            {
+                firstNumberLength = Display.Text.Length;
+                firstNumber = Convert.ToDouble(Display.Text);
+                operation = "addition";
+                Display.Text += "+";
+            }
+           
+
+        }
+
+        private void buttonSubstract_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonResult_click(object sender, EventArgs e)
+        {
+            double result = 0;
+            int secondNumberLength = Display.Text.Length - firstNumberLength - 1;
+            string seconNumberText = Display.Text.Substring(firstNumberLength + 1, secondNumberLength);
+            secondNumber = Convert.ToDouble(seconNumberText);
+            if (operation == "addition")
+            {
+                result = firstNumber + secondNumber;
+            }
+            Display.Text = Convert.ToString(result);
+        }
+
+            private void buttonMultiply_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDivide_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
