@@ -15,8 +15,9 @@ namespace Calculator
         double firstNumber;
         double secondNumber;
         int firstNumberLength;
-        string operation; 
-
+        string operation;
+        bool operationActive = false;
+        bool allowPeriod = true;
 
         public Calculator()
         {
@@ -41,9 +42,10 @@ namespace Calculator
 
         private void buttonPeriod_Click(object sender, EventArgs e)
         {
-            if (!Display.Text.Contains(","))
+            if (allowPeriod)
             {
                 Display.Text += ",";
+                allowPeriod = false;
             }
 
 
@@ -68,6 +70,7 @@ namespace Calculator
             }
 
             Display.Text = s;
+            CheckPeriod();
 
 
         }
@@ -90,6 +93,8 @@ namespace Calculator
                 firstNumber = Convert.ToDouble(Display.Text);
                 operation = "addition";
                 Display.Text += "+";
+                operationActive = true;
+                allowPeriod = true;
             }
            
 
@@ -102,6 +107,11 @@ namespace Calculator
 
         private void buttonResult_click(object sender, EventArgs e)
         {
+            if (!operationActive)
+            {
+                return;
+            }
+
             double result = 0;
             int secondNumberLength = Display.Text.Length - firstNumberLength - 1;
             string seconNumberText = Display.Text.Substring(firstNumberLength + 1, secondNumberLength);
@@ -111,9 +121,23 @@ namespace Calculator
                 result = firstNumber + secondNumber;
             }
             Display.Text = Convert.ToString(result);
+            operationActive = false;
+            CheckPeriod();
         }
 
-            private void buttonMultiply_Click(object sender, EventArgs e)
+        private void CheckPeriod()
+        {
+            if (Display.Text.Contains(","))
+            {
+                allowPeriod = false;
+            }
+            else
+            {
+                allowPeriod = true;
+            }
+        }
+
+        private void buttonMultiply_Click(object sender, EventArgs e)
         {
 
         }
