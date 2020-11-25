@@ -44,9 +44,9 @@
             this.buttonSign = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonDivide = new System.Windows.Forms.Button();
-            this.buttonResult = new System.Windows.Forms.Button();
+            this.buttonMultiply = new System.Windows.Forms.Button();
             this.buttonSubstract = new System.Windows.Forms.Button();
-            this.buttonequals = new System.Windows.Forms.Button();
+            this.buttonResult = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Display
@@ -228,7 +228,7 @@
             this.buttonAdd.TabIndex = 14;
             this.buttonAdd.Text = "+";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAdd.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
             // buttonDivide
             // 
@@ -240,19 +240,19 @@
             this.buttonDivide.TabIndex = 15;
             this.buttonDivide.Text = "/";
             this.buttonDivide.UseVisualStyleBackColor = true;
-            this.buttonDivide.Click += new System.EventHandler(this.buttonDivide_Click);
+            this.buttonDivide.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
-            // buttonResult
+            // buttonMultiply
             // 
-            this.buttonResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.buttonResult.Location = new System.Drawing.Point(229, 191);
-            this.buttonResult.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonResult.Name = "buttonResult";
-            this.buttonResult.Size = new System.Drawing.Size(70, 70);
-            this.buttonResult.TabIndex = 16;
-            this.buttonResult.Text = "x";
-            this.buttonResult.UseVisualStyleBackColor = true;
-            this.buttonResult.Click += new System.EventHandler(this.buttonMultiply_Click);
+            this.buttonMultiply.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonMultiply.Location = new System.Drawing.Point(229, 191);
+            this.buttonMultiply.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonMultiply.Name = "buttonMultiply";
+            this.buttonMultiply.Size = new System.Drawing.Size(70, 70);
+            this.buttonMultiply.TabIndex = 16;
+            this.buttonMultiply.Text = "*";
+            this.buttonMultiply.UseVisualStyleBackColor = true;
+            this.buttonMultiply.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
             // buttonSubstract
             // 
@@ -264,28 +264,28 @@
             this.buttonSubstract.TabIndex = 17;
             this.buttonSubstract.Text = "—";
             this.buttonSubstract.UseVisualStyleBackColor = true;
-            this.buttonSubstract.Click += new System.EventHandler(this.buttonSubstract_Click);
+            this.buttonSubstract.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
-            // buttonequals
+            // buttonResult
             // 
-            this.buttonequals.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.buttonequals.Location = new System.Drawing.Point(19, 331);
-            this.buttonequals.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonequals.Name = "buttonequals";
-            this.buttonequals.Size = new System.Drawing.Size(280, 70);
-            this.buttonequals.TabIndex = 18;
-            this.buttonequals.Text = "=";
-            this.buttonequals.UseVisualStyleBackColor = true;
-            this.buttonequals.Click += new System.EventHandler(this.buttonResult_click);
+            this.buttonResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonResult.Location = new System.Drawing.Point(19, 331);
+            this.buttonResult.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonResult.Name = "buttonResult";
+            this.buttonResult.Size = new System.Drawing.Size(280, 70);
+            this.buttonResult.TabIndex = 18;
+            this.buttonResult.Text = "=";
+            this.buttonResult.UseVisualStyleBackColor = true;
+            this.buttonResult.Click += new System.EventHandler(this.buttonResult_click);
             // 
             // Calculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 421);
-            this.Controls.Add(this.buttonequals);
-            this.Controls.Add(this.buttonSubstract);
             this.Controls.Add(this.buttonResult);
+            this.Controls.Add(this.buttonSubstract);
+            this.Controls.Add(this.buttonMultiply);
             this.Controls.Add(this.buttonDivide);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonSign);
@@ -325,9 +325,9 @@
         private System.Windows.Forms.Button buttonSign;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonDivide;
-        private System.Windows.Forms.Button buttonResult;
+        private System.Windows.Forms.Button buttonMultiply;
         private System.Windows.Forms.Button buttonSubstract;
-        private System.Windows.Forms.Button buttonequals;
+        private System.Windows.Forms.Button buttonResult;
     }
 }
 

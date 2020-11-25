@@ -12,9 +12,6 @@ namespace Calculator
 {
     public partial class Calculator : Form
     {
-        double firstNumber;
-        double secondNumber;
-        int firstNumberLength;
         string operation;
         bool operationActive = false;
         bool allowPeriod = true;
@@ -86,43 +83,57 @@ namespace Calculator
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            
-            if (!Display.Text.Contains("+"))
+           if(!Display.Text.Contains("+"))
             {
-                firstNumberLength = Display.Text.Length;
-                firstNumber = Convert.ToDouble(Display.Text);
-                operation = "addition";
                 Display.Text += "+";
-                operationActive = true;
-                allowPeriod = true;
+                operation = "+";
             }
-           
-
         }
 
         private void buttonSubstract_Click(object sender, EventArgs e)
         {
-
+            if (!Display.Text.Contains("-"))
+            {
+                Display.Text += "-";
+                operation = "-";
+            }
         }
 
         private void buttonResult_click(object sender, EventArgs e)
         {
-            if (!operationActive)
-            {
-                return;
-            }
 
-            double result = 0;
-            int secondNumberLength = Display.Text.Length - firstNumberLength - 1;
-            string seconNumberText = Display.Text.Substring(firstNumberLength + 1, secondNumberLength);
-            secondNumber = Convert.ToDouble(seconNumberText);
-            if (operation == "addition")
+            try
             {
-                result = firstNumber + secondNumber;
+                string[] numberStrings = Display.Text.Split(Convert.ToChar(operation));
+                double[] numbers = new double[2];
+                double result = 0;
+
+                numbers[0] = Convert.ToDouble(numberStrings[0]);
+                numbers[1] = Convert.ToDouble(numberStrings[1]);
+
+                if (operation == "+")
+                {
+                    result = numbers[0] + numbers[1];
+                }
+                else if (operation == "-")
+                {
+                    result = numbers[0] - numbers[1];
+                }
+                else if(operation == "*")
+                {
+                    result = numbers[0] * numbers[1];
+                }
+                else if(operation == "/")
+                {
+                    result = numbers[0] / numbers[1];
+                }
+
+                Display.Text = Convert.ToString(result);
             }
-            Display.Text = Convert.ToString(result);
-            operationActive = false;
-            CheckPeriod();
+            catch
+            {
+                MessageBox.Show("Error: " + Display.Text);
+            }
         }
 
         private void CheckPeriod()
@@ -144,6 +155,18 @@ namespace Calculator
 
         private void buttonDivide_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void buttonOperation_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            operation = button.Text;
+            if (!Display.Text.Contains(operation))
+            {
+                Display.Text += operation;
+
+            }
 
         }
     }
