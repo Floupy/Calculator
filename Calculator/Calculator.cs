@@ -83,7 +83,7 @@ namespace Calculator
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-           if(!Display.Text.Contains("+"))
+            if (!Display.Text.Contains("+"))
             {
                 Display.Text += "+";
                 operation = "+";
@@ -119,21 +119,24 @@ namespace Calculator
                 {
                     result = numbers[0] - numbers[1];
                 }
-                else if(operation == "*")
+                else if (operation == "*")
                 {
                     result = numbers[0] * numbers[1];
                 }
-                else if(operation == "/")
+                else if (operation == "/")
                 {
                     result = numbers[0] / numbers[1];
                 }
 
                 Display.Text = Convert.ToString(result);
+                operationActive = false;
             }
             catch
             {
                 MessageBox.Show("Error: " + Display.Text);
             }
+
+
         }
 
         private void CheckPeriod()
@@ -161,16 +164,45 @@ namespace Calculator
         private void buttonOperation_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
-            operation = button.Text;
-            if (!Display.Text.Contains(operation))
+
+            if (!operationActive)
             {
+                operation = button.Text;
                 Display.Text += operation;
+                operationActive = true;
+                allowPeriod = true;
 
             }
 
+
+
+
+
+
+        }
+
+        private void buttonMode_Click(object sender, EventArgs e)
+        {
+            if(buttonMode.Text == "Sim")
+            {
+                buttonMode.Text = "Sci";
+                this.Width = 470;
+                buttonBackspace.Left = 425;
+                Display.Width = 405;
+                    
+            }
+            else
+            {
+                buttonMode.Text = "Sim";
+                this.Width = 325;
+                buttonBackspace.Left = 275;
+                Display.Width = 255;
+            }
+            
         }
     }
 }
+
 
 
 
